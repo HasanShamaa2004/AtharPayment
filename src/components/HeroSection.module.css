@@ -1,0 +1,178 @@
+/* ========== Hero Section ========== */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, #7B5AA6 0%, #9B7FC7 40%, #2EC4B6 100%);
+  padding: 80px 20px 140px;
+  text-align: center;
+  color: #ffffff;
+  overflow: hidden;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Particles */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  left: var(--x);
+  bottom: -50px;
+  animation: particleFloat var(--duration) ease-in-out var(--delay) infinite;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-600px) scale(0.5); opacity: 0; }
+}
+
+/* Content */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  animation: heroContentIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes heroContentIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo */
+.logoWrap {
+  margin-bottom: 28px;
+  display: inline-block;
+  animation: logoFloat 4s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.logoPlaceholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.1));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #ffffff;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.logoImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Title - drop-in animation */
+.title {
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 900;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  animation: titleDropIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+@keyframes titleDropIn {
+  from { opacity: 0; transform: translateY(-40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Description */
+.description {
+  font-size: clamp(16px, 2.5vw, 20px);
+  opacity: 0.92;
+  max-width: 600px;
+  margin: 0 auto 24px;
+  font-weight: 500;
+  animation: fadeSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
+}
+
+.badge i {
+  color: #5DD3C8;
+}
+
+/* Wave Divider */
+.waveWrap {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  line-height: 0;
+}
+
+.waveSvg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+.wavePath1 {
+  animation: waveMove1 8s ease-in-out infinite;
+}
+
+.wavePath2 {
+  animation: waveMove2 6s ease-in-out infinite;
+}
+
+@keyframes waveMove1 {
+  0%, 100% { d: path("M0,40 C240,100 480,0 720,60 C960,120 1200,20 1440,50 L1440,120 L0,120 Z"); }
+  50% { d: path("M0,60 C240,10 480,100 720,40 C960,0 1200,80 1440,40 L1440,120 L0,120 Z"); }
+}
+
+@keyframes waveMove2 {
+  0%, 100% { d: path("M0,60 C360,0 720,100 1080,40 C1260,10 1380,30 1440,60 L1440,120 L0,120 Z"); }
+  50% { d: path("M0,40 C360,80 720,10 1080,60 C1260,80 1380,50 1440,40 L1440,120 L0,120 Z"); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { padding: 60px 16px 120px; min-height: 400px; }
+  .logoPlaceholder, .logoImg { width: 80px; height: 80px; font-size: 32px; }
+}

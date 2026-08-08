@@ -1,0 +1,36 @@
+/* ========== Footer ========== */
+.footer {
+  background: linear-gradient(135deg, #2D1B4E 0%, #7B5AA6 50%, #2EC4B6 100%);
+  color: #ffffff;
+  text-align: center;
+  padding: 36px 20px;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.adminBtn {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.08;
+  transition: opacity 0.5s;
+  padding: 8px;
+}
+
+.adminBtn:hover {
+  opacity: 0.6;
+}
