@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# يمكن إضافة Sitemap عند تحديد النطاق الحقيقي
+# Sitemap: https://your-domain.com/sitemap.xml

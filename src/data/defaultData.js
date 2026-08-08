@@ -45,7 +45,7 @@ export const DEFAULT_PAYMENTS = [
     id: generateId(),
     name: "الشام كاش",
     accountNumber: "38ad341039cb3bdfd1d931d80deb3037",
-    accountName: "فريق أثر التطوعي",
+    accountName: "Athar Academy Foundation",
     description: "حساب الشام كاش",
     icon: "fa-wallet",
     color: "blue",
