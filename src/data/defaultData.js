@@ -13,7 +13,7 @@ export const DEFAULT_SETTINGS = {
   donorsCount: 128,
   daysLeft: 15,
   whatsapp: "963982934617",
-  phone: "963982934617",
+  phone: "+963982934617",
   email: "atharorganization683@gmail.com",
   logoUrl: "",
   siteIcon: "/60187.png",
