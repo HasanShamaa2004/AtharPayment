@@ -156,7 +156,7 @@
 /* Copy Button */
 .copyBtn {
   width: 100%;
-  padding: 13px;
+  padding: 13px 18px;
   background: linear-gradient(135deg, #7b5aa6, #2ec4b6);
   color: #ffffff;
   border-radius: 16px;
@@ -170,6 +170,10 @@
   overflow: hidden;
   margin-bottom: 16px;
   min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .copyBtn::after {

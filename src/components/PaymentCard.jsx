@@ -55,19 +55,24 @@ export default function PaymentCard({ payment, index, onQrClick }) {
   }, [visible, qrData, image]);
 
   // Copy to clipboard
-  const handleCopy = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(accountNumber);
-    } else {
-      const ta = document.createElement("textarea");
-      ta.value = accountNumber;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      document.body.removeChild(ta);
+  const handleCopy = async () => {
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(accountNumber);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = accountNumber;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+    } catch (error) {
+      console.error("Copy failed:", error);
     }
+
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -133,7 +138,9 @@ export default function PaymentCard({ payment, index, onQrClick }) {
         onClick={handleCopy}
       >
         <i className={`fa-solid ${copied ? "fa-check" : "fa-copy"}`}></i>
-        {copied ? "تم النسخ" : "نسخ رقم الحساب"}
+        <span className={styles.copyBtnText}>
+          {copied ? "تم النسخ" : "نسخ رقم الحساب"}
+        </span>
       </button>
 
       {/* QR Code */}
