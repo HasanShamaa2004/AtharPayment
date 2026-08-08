@@ -171,3 +171,7 @@
 .copyBtn:active {
   transform: scale(0.98);
 }
+
+.copyBtn.copied {
+  background: linear-gradient(135deg, #10b981, #34d399);
+}

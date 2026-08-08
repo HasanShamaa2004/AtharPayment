@@ -56,6 +56,8 @@ export default function PaymentCard({ payment, index, onQrClick }) {
 
   // Copy to clipboard
   const handleCopy = async () => {
+    setCopied(true);
+
     try {
       if (navigator.clipboard) {
         await navigator.clipboard.writeText(accountNumber);
@@ -73,8 +75,7 @@ export default function PaymentCard({ payment, index, onQrClick }) {
       console.error("Copy failed:", error);
     }
 
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setTimeout(() => setCopied(false), 1600);
   };
 
   // QR click handler
@@ -134,8 +135,11 @@ export default function PaymentCard({ payment, index, onQrClick }) {
 
       {/* Copy Button */}
       <button
+        type="button"
         className={`${styles.copyBtn} ${copied ? styles.copied : ""}`}
         onClick={handleCopy}
+        aria-live="polite"
+        aria-label={copied ? "تم النسخ" : "نسخ رقم الحساب"}
       >
         <i className={`fa-solid ${copied ? "fa-check" : "fa-copy"}`}></i>
         <span className={styles.copyBtnText}>

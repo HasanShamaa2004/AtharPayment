@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./QRModal.module.css";
 
 /**
@@ -8,6 +8,7 @@ import styles from "./QRModal.module.css";
 export default function QRModal({ isOpen, onClose, payment }) {
   const overlayRef = useRef(null);
   const containerRef = useRef(null);
+  const [copied, setCopied] = useState(false);
 
   // توليد QR Code في Modal
   useEffect(() => {
@@ -48,20 +49,28 @@ export default function QRModal({ isOpen, onClose, payment }) {
 
   if (!isOpen || !payment) return null;
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     const text = `تبرع - ${payment.name}\nرقم الحساب: ${payment.accountNumber}\nاسم الحساب: ${payment.accountName}`;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text);
-    } else {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      document.body.removeChild(ta);
+    setCopied(true);
+
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+    } catch (error) {
+      console.error("Copy failed:", error);
     }
+
+    setTimeout(() => setCopied(false), 1600);
   };
 
   return (
@@ -111,8 +120,14 @@ export default function QRModal({ isOpen, onClose, payment }) {
           </div>
         </div>
 
-        <button className={styles.copyBtn} onClick={handleCopy}>
-          <i className="fa-solid fa-copy"></i> نسخ بيانات الحساب
+        <button
+          type="button"
+          className={`${styles.copyBtn} ${copied ? styles.copied : ""}`}
+          onClick={handleCopy}
+          aria-live="polite"
+        >
+          <i className={`fa-solid ${copied ? "fa-check" : "fa-copy"}`}></i>
+          {copied ? "تم النسخ" : "نسخ بيانات الحساب"}
         </button>
       </div>
     </div>
